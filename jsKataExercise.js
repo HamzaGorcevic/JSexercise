@@ -14,43 +14,86 @@
 
 // narcissistic(1);
 
-function nextBigger(n) {
-  nizBrojeva = ("" + n).split("");
-  nizBrojeva = nizBrojeva.reverse();
-  nizBrojeva.forEach((el, i) => {
-    nizBrojeva[i] = parseInt(el);
-  });
-  let duzina = nizBrojeva.length;
+// function nextBigger(n) {
+//   nizBrojeva = ("" + n).split("");
+//   nizBrojeva.forEach((el, i) => {
+//     nizBrojeva[i] = parseInt(el);
+//   });
+//   nizBrojeva.reverse();
+//   let duzina = nizBrojeva.length;
+//   let times = 0;
+//   for (let i = 0; i < duzina - 1; i++) {
+//     if (nizBrojeva[i] > nizBrojeva[i + 1]) {
+//       if (i - 1 > -1 && nizBrojeva[i - 1] > nizBrojeva[i + 1]) {
+//         elm = nizBrojeva[i + 1];
+//         nizBrojeva.reverse();
+//         times++;
+//         let part = nizBrojeva.slice(duzina - i - 1);
+//         part = part.filter((el) => {
+//           if (el > elm) {
+//             return el;
+//           }
+//         });
+//         let min = Math.min(...part);
+//         nizBrojeva.reverse();
+//         let index = nizBrojeva.indexOf(min);
+//         nizBrojeva.reverse();
+//         let temp = nizBrojeva[duzina - i - 2];
+//         nizBrojeva[duzina - i - 2] = nizBrojeva[duzina - index - 1];
+//         nizBrojeva[duzina - index - 1] = temp;
+//         part = nizBrojeva.slice(duzina - i - 1);
+//         part.sort();
+//         nizBrojeva.splice(duzina - part.length, part.length, ...part);
+//         break;
+//       }
+//       let temp = nizBrojeva[i];
+//       nizBrojeva[i] = nizBrojeva[i + 1];
+//       nizBrojeva[i + 1] = temp;
+//       nizBrojeva.reverse();
+//       let part = nizBrojeva.slice(duzina - i - 1);
+//       part.sort();
+//       nizBrojeva.splice(duzina - part.length, part.length, ...part);
+//       times++;
+//       break;
+//     }
+//   }
 
-  for (let i = 0; i < duzina - 1; i++) {
-    if (nizBrojeva[i] > nizBrojeva[i + 1]) {
-      let part = nizBrojeva.slice(0, i);
-      let min = Math.min(...part);
+//   if (times == 0) {
+//     return -1;
+//   }
+//   let result = nizBrojeva.join("");
+//   return parseInt(result);
+// }
+// //0 1 2 3
+// //2 4 4 1
+// //1 4 4 2
+// //part = 1 4
+// //2144
+// console.log(nextBigger(21174984));
 
-      let index = nizBrojeva.indexOf(min);
-      console.log(index);
-      let temp = nizBrojeva[i + 1];
-      console.log(temp);
-      nizBrojeva[i + 1] = nizBrojeva[index];
-      console.log(nizBrojeva[index]);
-      nizBrojeva[index] = temp;
+// //1234567980
+// //1234567908
 
-      part = nizBrojeva.slice(0, i + 1);
-      part.sort();
+// // diffrent solution
 
-      console.log(part);
-      nizBrojeva.splice(i, i + 1, ...part);
-
-      break;
-    }
-  }
-  nizBrojeva.reverse();
-  let result = nizBrojeva.join("");
-  console.log("result", result);
+function maxWithDigits(n) {
+  return parseInt(
+    n
+      .toString()
+      .split("")
+      .sort(function (a, b) {
+        return b - a;
+      })
+      .join("")
+  );
 }
-//0 1 2 3
-//2 4 4 1
-//1 4 4 2
-//part = 1 4
-//2144
-nextBigger(1442);
+
+function nextBigger(n) {
+  let mx = maxWithDigits(n);
+  console.log(mx);
+  for (i = n + 1; i <= mx; i++)
+    if ((console.log(i), maxWithDigits(i) === mx)) return i;
+  return -1;
+}
+
+console.log(nextBigger(414));
