@@ -99,34 +99,32 @@
 // console.log(nextBigger(414));
 
 // exercise deleting same elemtns from matrix
+/**
+ * @param {number[]} nums
+ * @return {number[][]}
+ */
 var threeSum = function (nums) {
   let niz = [];
 
-  for (let i = 0; i < nums.length; i++) {
-    for (let j = i; j < nums.length; j++) {
-      for (let k = j; k < nums.length; k++) {
-        if (i != j && k != i && k != j) {
-          if (nums[i] + nums[j] + nums[k] == 0) {
-            niz.push([nums[i], nums[j], nums[k]]);
-            break;
-          }
-        }
-      }
-    }
-  }
-
-  let help = niz.length;
-  while (help >= 1) {
-    help--;
-    for (let i = 0; i < niz.length; i++) {
-      for (let j = i + 1; j < niz.length; j++) {
-        if (JSON.stringify(niz[i].sort()) === JSON.stringify(niz[j].sort())) {
-          niz.splice(i, 1);
+  for (let i = 0; i < nums.length - 2; i++) {
+    for (let j = i + 1; j < nums.length - 1; j++) {
+      for (let k = j + 1; k < nums.length; k++) {
+        if (nums[i] + nums[j] + nums[k] === 0) {
+          niz.push([nums[i], nums[j], nums[k]]);
           break;
         }
       }
     }
   }
+  for (let i = 0; i < niz.length - 1; i++) {
+    for (let j = i + 1; j < niz.length; j++) {
+      if (niz[i].sort().join(",") === niz[j].sort().join(",")) {
+        niz.splice(j, 1);
+        j--;
+      }
+    }
+  }
+
   return niz;
 };
 
