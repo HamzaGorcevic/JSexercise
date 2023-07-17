@@ -76,24 +76,58 @@
 
 // // diffrent solution
 
-function maxWithDigits(n) {
-  return parseInt(
-    n
-      .toString()
-      .split("")
-      .sort(function (a, b) {
-        return b - a;
-      })
-      .join("")
-  );
-}
+// function maxWithDigits(n) {
+//   return parseInt(
+//     n
+//       .toString()
+//       .split("")
+//       .sort(function (a, b) {
+//         return b - a;
+//       })
+//       .join("")
+//   );
+// }
 
-function nextBigger(n) {
-  let mx = maxWithDigits(n);
-  console.log(mx);
-  for (i = n + 1; i <= mx; i++)
-    if ((console.log(i), maxWithDigits(i) === mx)) return i;
-  return -1;
-}
+// function nextBigger(n) {
+//   let mx = maxWithDigits(n);
+//   console.log(mx);
+//   for (i = n + 1; i <= mx; i++)
+//     if ((console.log(i), maxWithDigits(i) === mx)) return i;
+//   return -1;
+// }
 
-console.log(nextBigger(414));
+// console.log(nextBigger(414));
+
+// exercise deleting same elemtns from matrix
+var threeSum = function (nums) {
+  let niz = [];
+
+  for (let i = 0; i < nums.length; i++) {
+    for (let j = i; j < nums.length; j++) {
+      for (let k = j; k < nums.length; k++) {
+        if (i != j && k != i && k != j) {
+          if (nums[i] + nums[j] + nums[k] == 0) {
+            niz.push([nums[i], nums[j], nums[k]]);
+            break;
+          }
+        }
+      }
+    }
+  }
+
+  let help = niz.length;
+  while (help >= 1) {
+    help--;
+    for (let i = 0; i < niz.length; i++) {
+      for (let j = i + 1; j < niz.length; j++) {
+        if (JSON.stringify(niz[i].sort()) === JSON.stringify(niz[j].sort())) {
+          niz.splice(i, 1);
+          break;
+        }
+      }
+    }
+  }
+  return niz;
+};
+
+console.log(threeSum([0, 0, 0, 0]));

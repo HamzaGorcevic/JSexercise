@@ -1,1 +1,1 @@
-        console.log(nizBrojeva[duzina - i - 2]);
+  let niz = [];
